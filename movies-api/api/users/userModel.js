@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
   
 const UserSchema = new Schema({
     username: { type: String, unique: true, required: true},
-    password: {type: String, required: true },
+    password: {type: String, required: true, validate: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/ },
     favourites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Movies'}]
 });
 
