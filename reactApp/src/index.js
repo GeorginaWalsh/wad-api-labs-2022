@@ -1,13 +1,14 @@
 import React from "react";
   import ReactDOM from "react-dom";
   import { BrowserRouter, Route, Redirect, Switch, Link } from "react-router-dom";
-  import { PublicPage, Movies, Profile, HomePage } from "./pages";
+  import { PublicPage, Movies, Profile, HomePage, UpcomingMovies } from "./pages";
   import LoginPage from "./loginPage";
   import AuthProvider from "./authContext";
   import PrivateRoute from "./privateRoute";
   import AuthHeader from "./authHeader";
   import SignUpPage from "./signUpPage";
   import MovieProvider from "./moviesContext";
+  
 
   const App = () => {
     return (
@@ -27,6 +28,9 @@ import React from "react";
             <li>
               <Link to="/profile">Profile</Link>
             </li>
+            <li>
+              <Link to="/upcoming">Upcoming Movies</Link>
+            </li>
           </ul>
           <MovieProvider>
           <Switch>
@@ -36,6 +40,7 @@ import React from "react";
             <Route path="/login" component={LoginPage} />
             <PrivateRoute path="/movies" component={Movies} />
             <PrivateRoute path="/profile" component={Profile} />
+            <PrivateRoute path="/upcoming" component={UpcomingMovies} />
             <Redirect from="*" to="/" />
           </Switch>
           </MovieProvider>

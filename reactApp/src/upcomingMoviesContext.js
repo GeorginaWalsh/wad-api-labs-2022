@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect, useReducer } from "react";
-import { getMovies } from "./api/movie-api";
+import { getUpcoming } from "./api/movie-api";
 
-export const MoviesContext = createContext(null);
+export const UpcomingMoviesContext = createContext(null);
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -12,27 +12,27 @@ const reducer = (state, action) => {
   }
 };
 
-const MoviesContextProvider = props => {
+const UpcomingMoviesContextProvider = props => {
   const [state, dispatch] = useReducer(reducer, { movies: []});
   const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
-    getMovies().then(result => {
+    getUpcoming().then(result => {
       console.log(result);
       dispatch({ type: "load", payload: {result}});
     });
   },[]);
 
   return (
-    <MoviesContext.Provider
+    <UpcomingMoviesContext.Provider
       value={{
         movies: state.movies,
         setAuthenticated
       }}
     >
       {props.children}
-    </MoviesContext.Provider>
+    </UpcomingMoviesContext.Provider>
   );
 };
 
-export default MoviesContextProvider
+export default UpcomingMoviesContextProvider

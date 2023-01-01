@@ -32,6 +32,8 @@ app.use(passport.initialize());
 
 app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRouter);
 
+app.use('/api/upcoming', passport.authenticate('jwt', {session: false}), moviesRouter);
+
 app.use('/api/genres', genresRouter);
 
 //Users router
