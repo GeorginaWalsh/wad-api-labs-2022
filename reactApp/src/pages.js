@@ -7,6 +7,14 @@ export const PublicPage = () => {
     return <h2>Public page</h2>
  }
 
+ export const Profile = () => {
+    return <h2>My Profile </h2>
+}
+
+ export const HomePage = () => {
+     return  <h2>Home page</h2>
+ }
+
  export const Movies = () => {
     const context = useContext(MoviesContext);
     return <>
@@ -16,14 +24,6 @@ export const PublicPage = () => {
         </div>
     </>
 }
-
- export const Profile = () => {
-    return <h2>My Profile </h2>
-}
-
- export const HomePage = () => {
-     return  <h2>Home page</h2>
- }
  
  ////////////////////////
 
@@ -33,7 +33,9 @@ export const PublicPage = () => {
     return <>
         <h2>Upcoming Movies Data </h2>
         <div>
-            {context.movies.results.map(movie => { return <>{movie.id},{movie.title}<br /></> })}
+
+            {context.upcomingMovies.results.map(upcomingMovie => { return <>{upcomingMovie.id},{upcomingMovie.title}<br /></> })}
+        
         </div>
     </>
 }

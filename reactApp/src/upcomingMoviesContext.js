@@ -6,14 +6,14 @@ export const UpcomingMoviesContext = createContext(null);
 const reducer = (state, action) => {
   switch (action.type) {
     case "load":
-      return { movies: action.payload.result};
+      return { upcomingMovies: action.payload.result};
     default:
       return state;
   }
 };
 
 const UpcomingMoviesContextProvider = props => {
-  const [state, dispatch] = useReducer(reducer, { movies: []});
+  const [state, dispatch] = useReducer(reducer, { upcomingMovies: []});
   const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const UpcomingMoviesContextProvider = props => {
   return (
     <UpcomingMoviesContext.Provider
       value={{
-        movies: state.movies,
+        upcomingMovies: state.upcomingMovies,
         setAuthenticated
       }}
     >
