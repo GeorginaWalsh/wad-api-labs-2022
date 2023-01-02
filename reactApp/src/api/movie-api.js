@@ -29,7 +29,7 @@ export const getMovies = () => {
 
   export const getUpcoming = () => {
     return fetch(
-       '/api/upcoming',{headers: {
+       '/api/movies/upcoming',{headers: {
          'Authorization': window.localStorage.getItem('token')
       }
     }

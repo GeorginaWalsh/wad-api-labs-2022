@@ -8,6 +8,7 @@ import React from "react";
   import AuthHeader from "./authHeader";
   import SignUpPage from "./signUpPage";
   import MovieProvider from "./moviesContext";
+  import UpcomingMovieProvider from "./upcomingMoviesContext";
   
 
   const App = () => {
@@ -32,7 +33,9 @@ import React from "react";
               <Link to="/upcoming">Upcoming Movies</Link>
             </li>
           </ul>
+          <UpcomingMovieProvider>
           <MovieProvider>
+            
           <Switch>
             <Route path="/signup" component={SignUpPage} />
             <Route path="/public" component={PublicPage} />
@@ -43,7 +46,9 @@ import React from "react";
             <PrivateRoute path="/upcoming" component={UpcomingMovies} />
             <Redirect from="*" to="/" />
           </Switch>
+          
           </MovieProvider>
+          </UpcomingMovieProvider>
         </AuthProvider>
       </BrowserRouter>
     );
