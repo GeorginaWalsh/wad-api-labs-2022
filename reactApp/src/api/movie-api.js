@@ -44,3 +44,12 @@ export const getMovies = () => {
     }
     ).then(res => res.json());
   };
+
+  export const getActors = () => {
+    return fetch(
+       '/api/actors',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
