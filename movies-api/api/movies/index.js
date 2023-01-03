@@ -1,9 +1,11 @@
 import express from 'express';
-import { movies, movieReviews, movieDetails } from './moviesData';
+//import { movies, movieReviews, movieDetails } from './moviesData';
 import uniqid from 'uniqid'
 
 import { getMovies } from '../tmdb-api';
 import { getUpcomingMovies } from '../tmdb-api';
+import { getMovie } from '../tmdb-api';
+import { getMovieReviews } from '../tmdb-api';
 
 import movieModel from './movieModel';
 import asyncHandler from 'express-async-handler';
@@ -39,7 +41,8 @@ router.get('/upcoming', asyncHandler( async(req, res) => {
 // Get movie details
 router.get('/:id', asyncHandler(async (req, res) => {
     const id = parseInt(req.params.id);
-    const movie = await movieModel.findByMovieDBId(id);
+    const movie = await getMovie(id);
+    console.log(movie)
     if (movie) {
         res.status(200).json(movie);
     } else {
@@ -48,10 +51,11 @@ router.get('/:id', asyncHandler(async (req, res) => {
 }));
 
 // Get movie reviews
-router.get('/:id/reviews', (req, res) => {
+router.get('/:id/reviews', asyncHandler(async  (req, res) => {
     const id = parseInt(req.params.id);
+    const movieReviews = await getMovieReviews(id)
     // find reviews in list
-    if (movieReviews.id == id) {
+    if (movieReviews) {
         res.status(200).json(movieReviews);
     } else {
         res.status(404).json({
@@ -59,17 +63,17 @@ router.get('/:id/reviews', (req, res) => {
             status_code: 404
         });
     }
-});
+}));
 
 //Post a movie review
-router.post('/:id/reviews', (req, res) => {
+router.post('/:id/reviews', asyncHandler(async  (req, res) => {
     const id = parseInt(req.params.id);
-
-    if (movieReviews.id == id) {
+    const movieReviews = await getMovieReviews(id)
+    if (movieReviews) {
         req.body.created_at = new Date();
         req.body.updated_at = new Date();
         req.body.id = uniqid();
-        movieReviews.results.push(req.body); //push the new review onto the list
+        movieReviews.push(req.body); //push the new review onto the list
         res.status(201).json(req.body);
     } else {
         res.status(404).json({
@@ -77,6 +81,6 @@ router.post('/:id/reviews', (req, res) => {
             status_code: 404
         });
     }
-});
+}));
 
 export default router;
