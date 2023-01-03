@@ -25,6 +25,7 @@ const SignUpPage = props => {
   return (
     <>
       <h2>SignUp page</h2>
+      <div class="logSign">
       <p>You must register a username and password to log in </p>
       <input value={userName} placeholder="user name" onChange={e => {
         setUserName(e.target.value);
@@ -37,6 +38,7 @@ const SignUpPage = props => {
       }}></input><br />
       {/* Login web form  */}
       <button onClick={register}>Register</button>
+      </div>
     </>
   );
 };

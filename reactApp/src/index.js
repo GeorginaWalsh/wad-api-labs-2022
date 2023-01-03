@@ -27,6 +27,7 @@ import React from "react";
             <a href="#upcoming"><Link to="/upcoming">Upcoming Movies</Link></a>
             <a href="#tvs"><Link to="/tvs">Tv Series</Link></a>
             <a href="#actors"><Link to="/actors">Actors</Link></a>
+            <a><AuthHeader /></a>
           </div> 
           {/* <ul>
             <li>
@@ -51,8 +52,6 @@ import React from "react";
               <Link to="/actors">Actors</Link>
             </li>
           </ul> */}
-
-          <AuthHeader />
 
           <MovieProvider>
           <UpcomingMovieProvider>

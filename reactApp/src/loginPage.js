@@ -22,6 +22,7 @@ const LoginPage = props => {
   return (
     <>
       <h2>Login page</h2>
+      <div class="logSign">
       <p>You must log in to view the protected pages </p>
       <input id="username" placeholder="user name" onChange={e => {
         setUserName(e.target.value);
@@ -33,6 +34,7 @@ const LoginPage = props => {
       <button onClick={login}>Log in</button>
       <p>Not Registered?
       <Link to="/signup">Sign Up!</Link></p>
+      </div>
     </>
   );
 };
