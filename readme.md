@@ -79,7 +79,10 @@ Overview of web API design:
 | /api/tvs/{tvid}/reviews | Get all reviews for a specific tv series | Create a new review for a specific tv series | N/A | N/A  
 | /api/actors |Gets a list of popular actors | N/A | N/A |
 | /api/actors/{actorid} | Get a specific actor | N/A | N/A | N/A
-​
+​| -- | -- | -- | -- | --
+
+
+
 If you have your API design on an online platform or graphic, please link to it (e.g. [Swaggerhub](https://app.swaggerhub.com/)).
 ​
 ​

@@ -1,8 +1,10 @@
 import express from 'express';
-import { tvs } from './tvsData';
+//import { tvs } from './tvsData';
 import uniqid from 'uniqid'
 
 import { getTvs } from '../tmdb-api';
+import { getTv } from '../tmdb-api';
+import { getTvReviews } from '../tmdb-api';
 
 import tvModel from './tvModel';
 import asyncHandler from 'express-async-handler';
@@ -34,7 +36,7 @@ router.get('/', asyncHandler( async(req, res) => {
 // Get tv details
 router.get('/:id', asyncHandler(async (req, res) => {
     const id = parseInt(req.params.id);
-    const tv = await tvModel.findByTvDBId(id);
+    const tv = await getTv(id);
     if (tv) {
         res.status(200).json(tv);
     } else {
@@ -43,10 +45,11 @@ router.get('/:id', asyncHandler(async (req, res) => {
 }));
 
 // Get tv reviews
-router.get('/:id/reviews', (req, res) => {
+router.get('/:id/reviews', asyncHandler(async (req, res) => {
     const id = parseInt(req.params.id);
+    const tvReviews = await getTvReviews(id);
     // find reviews in list
-    if (tvReviews.id == id) {
+    if (tvReviews) {
         res.status(200).json(tvReviews);
     } else {
         res.status(404).json({
@@ -54,17 +57,17 @@ router.get('/:id/reviews', (req, res) => {
             status_code: 404
         });
     }
-});
+}));
 
 //Post a tv review
-router.post('/:id/reviews', (req, res) => {
+router.post('/:id/reviews', asyncHandler(async (req, res) => {
     const id = parseInt(req.params.id);
-
-    if (tvReviews.id == id) {
+    const tvReviews = await getTvReviews(id);
+    if (tvReviews) {
         req.body.created_at = new Date();
         req.body.updated_at = new Date();
         req.body.id = uniqid();
-        tvReviews.results.push(req.body); //push the new review onto the list
+        tvReviews.push(req.body); //push the new review onto the list
         res.status(201).json(req.body);
     } else {
         res.status(404).json({
@@ -72,6 +75,6 @@ router.post('/:id/reviews', (req, res) => {
             status_code: 404
         });
     }
-});
+}));
 
 export default router;
