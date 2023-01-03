@@ -6,17 +6,15 @@ import { TvsContext } from './tvsContext';
 import { ActorsContext } from './actorsContext';
 
 export const PublicPage = () => {
-    return <body><h2>Public page</h2></body>
+    return <h2>Public page</h2>
 }
 
  export const Profile = () => {
-    return <body><h2>My Profile </h2></body>
+    return <h2>My Profile </h2>
 }
 
  export const HomePage = () => {
-     return  <body>
-        <h2>Home page</h2>
-        </body>
+     return  <h2>Home page</h2>
  }
 
 
