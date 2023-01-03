@@ -11,14 +11,24 @@ import React from "react";
   import UpcomingMovieProvider from "./upcomingMoviesContext";
   import TvProvider from "./tvsContext";
   import ActorProvider from "./actorsContext";
+
+  import "./css/\style.css"
   
 
   const App = () => {
     return (
       <BrowserRouter>
         <AuthProvider>
-          <AuthHeader />
-          <ul>
+          <div class="topnav">
+            <a href="#home"><Link to="/">Home</Link></a>
+            <a href="#public"><Link to="/public">Public</Link></a>
+            <a href="#profile"><Link to="/profile">Profile</Link></a>
+            <a href="#movies"><Link to="/movies">Movies</Link></a>
+            <a href="#upcoming"><Link to="/upcoming">Upcoming Movies</Link></a>
+            <a href="#tvs"><Link to="/tvs">Tv Series</Link></a>
+            <a href="#actors"><Link to="/actors">Actors</Link></a>
+          </div> 
+          {/* <ul>
             <li>
               <Link to="/">Home</Link>
             </li>
@@ -40,7 +50,10 @@ import React from "react";
             <li>
               <Link to="/actors">Actors</Link>
             </li>
-          </ul>
+          </ul> */}
+
+          <AuthHeader />
+
           <MovieProvider>
           <UpcomingMovieProvider>
             <TvProvider>
@@ -65,6 +78,7 @@ import React from "react";
           </MovieProvider>
         </AuthProvider>
       </BrowserRouter>
+      
     );
   };
 

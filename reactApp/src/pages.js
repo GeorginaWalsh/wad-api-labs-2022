@@ -24,9 +24,9 @@ export const PublicPage = () => {
     return <>
         <h2>Upcoming Movies Data </h2>
         <div>
-
-            {context.upcomingMovies.results.map(upcomingMovie => { return <>{upcomingMovie.id},{upcomingMovie.title}<br /></> })}
-        
+            <ul>
+                {context.upcomingMovies.results.map(upcomingMovie => { return <li>{upcomingMovie.id},{upcomingMovie.title}<br /></li> })}
+            </ul>
         </div>
     </>
 }
@@ -37,7 +37,9 @@ export const PublicPage = () => {
     return <>
         <h2>Movies Data </h2>
         <div>
-            {context.movies.results.map(movie => { return <>{movie.id},{movie.title}<br /></> })}
+            <ul>
+            {context.movies.results.map(movie => { return <li>{movie.id},{movie.title}<br /></li> })}
+            </ul>
         </div>
     </>
 }
@@ -48,7 +50,9 @@ export const Tvs = () => {
     return <>
         <h2>Tv Series Data </h2>
         <div>
-            {context.tvs.results.map(tv => { return <>{tv.id},{tv.name}<br /></> })}
+        <ul>
+            {context.tvs.results.map(tv => { return <li>{tv.id},{tv.name}<br /></li> })}
+            </ul>
         </div>
     </>
 }
@@ -58,7 +62,9 @@ export const Actors = () => {
     return <>
         <h2>Actor Data </h2>
         <div>
-            {context.actors.results.map(actor => { return <>{actor.id},{actor.name}<br /></> })}
+        <ul>
+            {context.actors.results.map(actor => { return <li>{actor.id},{actor.name}<br /></li> })}
+            </ul>
         </div>
     </>
 }

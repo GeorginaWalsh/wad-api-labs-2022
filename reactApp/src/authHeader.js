@@ -7,14 +7,19 @@ const BaseAuthHeader = (props) => {
   const { history } = props;
 
   return context.isAuthenticated ? (
+    <>
     <p>
-      Welcome {context.userName}! <button onClick={() => context.signout()}>Sign out</button>
+      Welcome {context.userName}! 
     </p>
+    <button onClick={() => context.signout()}>Sign out</button>
+    </>
   ) : (
+    <>
     <p>
       You are not logged in{" "}
-      <button onClick={() => history.push("/login")}>Login</button>
     </p>
+    <button onClick={() => history.push("/login")}>Login</button>
+    </>
   );
 };
 
